@@ -10,6 +10,13 @@
 <div class="container mt-4">
     <h2 class="text-center">Employee List</h2>
 
+    <!-- Add Employee Button -->
+    <a th:href="@{/employees/add}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Employee
+	</a>
+
+    <!-- Employee Table -->
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -17,6 +24,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +34,11 @@
                 <td th:text="${employee.firstName}"></td>
                 <td th:text="${employee.lastName}"></td>
                 <td th:text="${employee.email}"></td>
+                <td>
+
+                    <a th:href="@{/employees/update(id=${employee.id})}" class="btn btn-sm btn-warning">Update</a>
+                    <a th:href="@{/employees/delete(id=${employee.id})}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>

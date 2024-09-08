@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${employee != null} ? 'Update Employee' : 'Add Employee'">Employee Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2 class="text-center" th:text="${employee != null} ? 'Update Employee' : 'Add New Employee'"></h2>
+
+    <!-- Add/Update Employee Form -->
+    <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="POST">
+        <!-- If updating, include a hidden field for the employee ID -->
+        <input type="hidden" th:if="${employee != null}" th:name="id" th:value="${employee.id}"/>
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" 
+                   th:value="${employee != null} ? ${employee.firstName} : ''" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" 
+                   th:value="${employee != null} ? ${employee.lastName} : ''" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" 
+                   th:value="${employee != null} ? ${employee.email} : ''" required>
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="${employee != null} ? 'Update' : 'Save'"></button>
+        <a href="/list" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
